@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import { environment } from '../environment'
@@ -12,6 +12,18 @@ function App() {
   const [address,setAddress] = useState('')
   const [city,setCity] = useState('')
   const [phone,setPhone] = useState('')
+  const [palidhje, setPalidhje] = useState('');
+  const words = ['bus', 'kombi', 'raket', 'rab', 'veture', 'bicikel', 'cer', 'motor'];
+  
+  useEffect(() => {
+    let currentIndex = 1;
+    const interval = setInterval(() => {
+      setPalidhje(words[currentIndex]);
+      currentIndex = (currentIndex + 1) % words.length;
+    }, 5000);
+  
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, []);
 
   const createAgency = async ()=>{
     await axios.post(environment.apiurl+'/agency/create',{
@@ -30,6 +42,7 @@ function App() {
 
   return (
     <>
+    <h1>ME {palidhje}</h1>
     <input type="text" placeholder='name' onChange={(e)=>setName(e.target.value)}/>
     <input type="text" placeholder='email' onChange={(e)=>setEmail(e.target.value)}/>
     <input type="text" placeholder='password' onChange={(e)=>setPassword(e.target.value)}/>
