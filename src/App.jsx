@@ -13,10 +13,10 @@ function App() {
   const [city,setCity] = useState('')
   const [phone,setPhone] = useState('')
   const [palidhje, setPalidhje] = useState('');
-  const words = ['bus', 'kombi', 'raket', 'rab', 'veture', 'bicikel', 'cer', 'motor'];
+  const words = ['shpejtsi','t hollaume','tsulmaume','trotinet','bus', 'kombi', 'raket', 'rab', 'veture', 'bicikel', 'cer', 'motor'];
   
   useEffect(() => {
-    let currentIndex = 1;
+    let currentIndex = 0;
     const interval = setInterval(() => {
       setPalidhje(words[currentIndex]);
       currentIndex = (currentIndex + 1) % words.length;
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-    <h1>ME {palidhje}</h1>
+    <h1>me {palidhje}</h1>
     <input type="text" placeholder='name' onChange={(e)=>setName(e.target.value)}/>
     <input type="text" placeholder='email' onChange={(e)=>setEmail(e.target.value)}/>
     <input type="text" placeholder='password' onChange={(e)=>setPassword(e.target.value)}/>
